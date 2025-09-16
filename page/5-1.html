@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>校园通知系统</title>
+  <style>
+    body {
+      font-family: "Microsoft YaHei", sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 10px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .section h3 {
+      color: #007bff;
+      margin-bottom: 15px;
+    }
+
+    p {
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .notification-list {
+      margin-top: 20px;
+    }
+
+    .notification-item {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 15px;
+      margin-bottom: 15px;
+      background-color: #fff;
+    }
+
+    .notification-title {
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    .notification-content {
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .notification-meta {
+      font-size: 14px;
+      color: #999;
+    }
+
+    .read-btn {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    .read-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .read-status {
+      color: green;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  
+
+    <div class="section">
+      <h3>通知列表</h3>
+      <div class="notification-list" id="notificationList">
+        <!-- 通知项将通过 JavaScript 动态生成 -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 模拟通知数据
+    const notifications = [
+      {
+        id: 1,
+        title: "期末考试安排通知",
+        content: "本学期期末考试将于下周一至周五进行，请各位同学提前做好复习准备。",
+        audience: "全体学生",
+        level: "重要通知",
+        read: false,
+      },
+      {
+        id: 2,
+        title: "国庆放假通知",
+        content: "国庆假期为10月1日至10月7日，10月8日正常上课。",
+        audience: "全体学生",
+        level: "普通通知",
+        read: false,
+      },
+      {
+        id: 3,
+        title: "学术讲座通知",
+        content: "本周五下午2点，在学术报告厅将举办人工智能专题讲座，欢迎感兴趣的同学参加。",
+        audience: "计算机专业学生",
+        level: "普通通知",
+        read: false,
+      },
+    ];
+
+    const notificationList = document.getElementById("notificationList");
+
+    // 渲染通知列表
+    function renderNotifications() {
+      notificationList.innerHTML = "";
+      notifications.forEach((notification) => {
+        const notificationItem = document.createElement("div");
+        notificationItem.className = "notification-item";
+        notificationItem.innerHTML = `
+          <div class="notification-title">${notification.title}</div>
+          <div class="notification-content">${notification.content}</div>
+          <div class="notification-meta">
+            受众范围：${notification.audience} | 通知级别：${notification.level}
+          </div>
+          ${
+            !notification.read
+              ? `<button class="read-btn" data-id="${notification.id}">确认已读</button>`
+              : `<span class="read-status">已读</span>`
+          }
+        `;
+        notificationList.appendChild(notificationItem);
+      });
+
+      // 为“确认已读”按钮绑定事件
+      document.querySelectorAll(".read-btn").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const id = parseInt(this.getAttribute("data-id"));
+          const notification = notifications.find((n) => n.id === id);
+          if (notification) {
+            notification.read = true;
+            renderNotifications();
+          }
+        });
+      });
+    }
+
+    // 初始渲染
+    renderNotifications();
+  </script>
+</body>
+
+</html>

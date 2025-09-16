@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>课程进度跟踪</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../lib/layui-v2.6.3/css/layui.css" media="all">
+    <link rel="stylesheet" href="../lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="../css/public.css" media="all">
+    <style>
+        .top-panel {
+            border: 1px solid #eceff9;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .top-panel > .layui-card-body{
+            height: 60px;
+        }
+        .top-panel-number{
+            line-height:60px;
+            font-size: 30px;
+            border-right:1px solid #eceff9;
+        }
+        .top-panel-tips{
+            line-height:30px;
+            font-size: 12px
+        }
+    </style>
+</head>
+<body>
+<!--<div class="layuimini-container">-->
+<div class="layuimini-main">
+
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-xs12 layui-col-md3">
+
+            <div class="layui-card top-panel">
+                <div class="layui-card-header">作业完成率</div>
+                <div class="layui-card-body">
+                    <div class="layui-row layui-col-space5">
+                        <div class="layui-col-xs9 layui-col-md9 top-panel-number">
+                            90%
+                        </div>
+                        <div class="layui-col-xs3 layui-col-md3 top-panel-tips">
+                            比昨天 <a style="color: #1aa094">▲0.12</a><br>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="layui-col-xs12 layui-col-md3">
+
+            <div class="layui-card top-panel">
+                <div class="layui-card-header">平均课程视频观看进度</div>
+                <div class="layui-card-body">
+                    <div class="layui-row layui-col-space5">
+                        <div class="layui-col-xs9 layui-col-md9 top-panel-number">
+                            85%
+                        </div>
+                        <div class="layui-col-xs3 layui-col-md3 top-panel-tips">
+                            比昨天 <a style="color: #1aa094">▲0.12</a><br>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="layui-col-xs12 layui-col-md3">
+
+            <div class="layui-card top-panel">
+                <div class="layui-card-header">平均学习时长</div>
+                <div class="layui-card-body">
+                    <div class="layui-row layui-col-space5">
+                        <div class="layui-col-xs9 layui-col-md9 top-panel-number">
+                            4h
+                        </div>
+                        <div class="layui-col-xs3 layui-col-md3 top-panel-tips">
+                            比昨天 <a style="color: #1aa094">▲0.12</a><br>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="layui-col-xs12 layui-col-md3">
+
+            <div class="layui-card top-panel">
+                <div class="layui-card-header">资料下载次数</div>
+                <div class="layui-card-body">
+                    <div class="layui-row layui-col-space5">
+                        <div class="layui-col-xs9 layui-col-md9 top-panel-number">
+                            2345
+                        </div>
+                        <div class="layui-col-xs3 layui-col-md3 top-panel-tips">
+                            比昨天 <a style="color: #1aa094">▲0.12</a><br>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-xs12 layui-col-md9">
+            <div id="echarts-records" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
+        </div>
+        <div class="layui-col-xs12 layui-col-md3">
+            <div id="echarts-pies" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
+        </div>
+    </div>
+
+
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-xs12 layui-col-md6">
+            <div id="echarts-dataset" style="background-color:#ffffff;min-height:300px;padding: 10px"></div>
+        </div>
+        <div class="layui-col-xs12 layui-col-md6">
+            <div id="echarts-map" style="background-color:#ffffff;min-height:300px;padding: 10px"></div>
+        </div>
+    </div>
+
+
+</div>
+<!--</div>-->
+<script src="../lib/layui-v2.6.3/layui.js" charset="utf-8"></script>
+<script src="../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script>
+    layui.use(['layer', 'echarts'], function () {
+        var $ = layui.jquery,
+            layer = layui.layer,
+            echarts = layui.echarts;
+
+        /**
+         * 报表功能
+         */
+        var echartsRecords = echarts.init(document.getElementById('echarts-records'), 'walden');
+
+        var optionRecords = {
+            title: {
+                text: '作业完成情况-报表图'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    label: {
+                        backgroundColor: '#6a7985'
+                    }
+                }
+            },
+            legend: {
+                data: ['高等数学', '大学英语', '程序设计', '数据结构', '大学物理']
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: ['周一', '周二', '周三', '周四', '周五']
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value'
+                }
+            ],
+            series: [
+                {
+                    name: '高等数学',
+                    type: 'line',
+                    stack: '总量',
+                    areaStyle: {},
+                    data: [800, 932, 1101, 734, 900]
+                },
+                {
+                    name: '大学英语',
+                    type: 'line',
+                    areaStyle: {},
+                    data: [820, 982, 991, 1340, 980]
+                },
+                {
+                    name: '程序设计',
+                    type: 'line',
+                    stack: '总量',
+                    areaStyle: {},
+                    data: [950, 832, 701, 654, 890]
+                },
+                {
+                    name: '数据结构',
+                    type: 'line',
+                    stack: '总量',
+                    areaStyle: {},
+                    data: [1320, 932, 901, 834, 890]
+                },
+                {
+                    name: '大学物理',
+                    type: 'line',
+                    stack: '总量',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'top'
+                        }
+                    },
+                    areaStyle: {},
+                    data: [820, 932, 901, 934, 1290]
+                }
+            ]
+        };
+        echartsRecords.setOption(optionRecords);
+
+
+        /**
+         * 玫瑰图表
+         */
+        var echartsPies = echarts.init(document.getElementById('echarts-pies'), 'walden');
+        var optionPies = {
+            title: {
+                text: '学习时间占比-玫瑰图',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b} : {c} ({d}%)'
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['高等数学', '大学英语', '程序设计', '数据结构', '大学物理']
+            },
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '60%'],
+                    roseType: 'radius',
+                    data: [
+                        {value: 335, name: '高等数学'},
+                        {value: 135, name: '大学英语'},
+                        {value: 234, name: '程序设计'},
+                        {value: 310, name: '数据结构'},
+                        {value: 368, name: '大学物理'}
+                    ],
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        echartsPies.setOption(optionPies);
+
+
+        /**
+         * 柱状图
+         */
+        var echartsDataset = echarts.init(document.getElementById('echarts-dataset'), 'walden');
+
+        var optionDataset = {
+			title: {
+			    text: '资料下载情况',
+			
+			},
+			tooltip: {
+			    trigger: 'item',
+			    formatter: '{a} <br/>{b} : {c} ({d}%)'
+			},
+            legend: {},
+            tooltip: {},
+            dataset: {
+                dimensions: ['product', '课件', '拓展资料', '课后习题'],
+                source: [
+                    {product: '周一', '课件': 100, '拓展资料': 209, '课后习题': 550},
+                    {product: '周二', '课件': 83, '拓展资料': 145, '课后习题': 500},
+                    {product: '周三', '课件': 150, '拓展资料': 234, '课后习题': 450},
+                    {product: '周四', '课件': 230, '拓展资料': 123, '课后习题': 589},
+					{product: '周五', '课件': 172, '拓展资料': 222, '课后习题': 467}
+                ]
+            },
+            xAxis: {type: 'category'},
+            yAxis: {},
+            // Declare several bar series, each will be mapped
+            // to a column of dataset.source by default.
+            series: [
+                {type: 'bar'},
+                {type: 'bar'},
+                {type: 'bar'}
+            ]
+        };
+
+        echartsDataset.setOption(optionDataset);
+
+
+        /**
+         * 中国地图
+         */
+        var echartsMap = echarts.init(document.getElementById('echarts-map'), 'walden');
+
+
+        var optionMap = {
+			title: {
+			    text: '班级排名情况',
+			
+			},
+			tooltip: {
+			    trigger: 'item',
+			    formatter: '{a} <br/>{b} : {c} ({d}%)'
+			},
+            legend: {},
+            tooltip: {
+                trigger: 'axis',
+                showContent: false
+            },
+            dataset: {
+                source: [
+                    ['product', '学期一', '学期二', '学期三', '学期四', '学期五', '学期六'],
+                    ['一班',1, 3, 2, 3, 2, 4],
+                    ['二班', 2, 4, 3, 1, 3, 3],
+                    ['三班', 4, 2, 1, 2, 4,2],
+                    ['四班',3, 1, 4, 4, 1, 1]
+                ]
+            },
+            xAxis: {type: 'category'},
+            yAxis: {gridIndex: 0},
+            grid: {top: '55%'},
+            series: [
+                {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+                {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+                {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+                {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+                {
+                    type: 'pie',
+                    id: 'pie',
+                    radius: '30%',
+                    center: ['50%', '25%'],
+                    label: {
+                        formatter: '{b}: {@2012} ({d}%)'
+                    },
+                    encode: {
+                        itemName: 'product',
+                        value: '2012',
+                        tooltip: '2012'
+                    }
+                }
+            ]
+        };
+
+        echartsMap.setOption(optionMap);
+
+
+        // echarts 窗口缩放自适应
+        window.onresize = function () {
+            echartsRecords.resize();
+        }
+
+    });
+</script>
+</body>
+</html>

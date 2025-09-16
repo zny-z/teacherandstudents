@@ -1,0 +1,127 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 1000,
+  "data": [
+    {
+      "id": 10001,
+      "username": "赵一",
+      "sex": "女",
+      "city": "01",
+      "sign": "2413040101",
+      "experience": 90,
+      "logins": 24,
+      "wealth": 1,
+      "classify": "88",
+      "score": 85
+    },
+    {
+      "id": 10002,
+      "username": "钱二",
+      "sex": "男",
+      "city": "01",
+      "sign": "2413040123",
+      "experience": 80,
+      "logins": 24,
+      "wealth": 3,
+      "classify": "85",
+      "score": 90
+    },
+    {
+      "id": 10003,
+      "username": "孙三",
+      "sex": "男",
+      "city": "03",
+      "sign": "2413040311",
+      "experience": 95,
+      "logins": 24,
+      "wealth": 2,
+      "classify": "90",
+      "score": 87
+    },
+    {
+      "id": 10004,
+      "username": "李四",
+      "sex": "女",
+      "city": "05",
+      "sign": "2413040509",
+      "experience": 98,
+      "logins": 24,
+      "wealth": 0,
+      "classify": "94",
+      "score": 90
+    },
+    {
+      "id": 10005,
+      "username": "周五",
+      "sex": "女",
+      "city": "11",
+      "sign": "2413041134",
+      "experience": 90,
+      "logins": 24,
+      "wealth": 2,
+      "classify": "88",
+      "score": 85
+    },
+    {
+      "id": 10006,
+      "username": "吴六",
+      "sex": "女",
+      "city": "30",
+      "sign": "2413043003",
+      "experience": 80,
+      "logins": 24,
+      "wealth": 1,
+      "classify": "85",
+      "score": 70
+    },
+    {
+      "id": 10007,
+      "username": "郑七",
+      "sex": "男",
+      "city": "23",
+      "sign": "2413042332",
+      "experience": 70,
+      "logins": 24,
+      "wealth": 4,
+      "classify": "77",
+      "score": 82
+    },
+    {
+      "id": 10008,
+      "username": "王小小",
+      "sex": "女",
+      "city": "09",
+      "sign": "2413040924",
+      "experience": 78,
+      "logins": 24,
+      "wealth": 2,
+      "classify": "78",
+      "score": 78
+    },
+    {
+      "id": 10009,
+      "username": "张一一",
+      "sex": "女",
+      "city": "06",
+      "sign": "2413040608",
+      "experience": 100,
+      "logins": 24,
+      "wealth": 0,
+      "classify": "95",
+      "score": 90
+    },
+    {
+      "id": 10010,
+      "username": "冯七七",
+      "sex": "男",
+      "city": "10",
+      "sign": "2413041011",
+      "experience": 80,
+      "logins": 24,
+      "wealth": 3,
+      "classify": "88",
+      "score": 85
+    }
+  ]
+}
