@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>后台管理-注册</title>
+		<link rel="stylesheet" href="lib/layui-v2.6.3/css/layui.css">
+		<style>
+					.required::before {
+						content: "*";
+						color: #ff0000;
+						margin-right: 4px;
+						font-weight: bold;				
+					}
+		
+					
+					body{
+						background-image: url('images/teacher.png');
+						background-size: cover; 
+						background-position: center center; 
+						background-attachment: fixed;
+						background-repeat: no-repeat; 
+						min-height: 100vh; 
+						margin: 0;
+						padding: 40px 20px; 
+					}
+		
+					
+					.form-wrapper {
+						max-width: 720px;
+						margin: 0 auto; 
+						background-color: rgba(255, 255, 255, 0.8); 
+						padding: 30px;
+						border-radius: 10px;
+						box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); 
+					}
+		
+					
+					.form-title {
+						text-align: center;
+						color: #333;
+						margin-bottom: 35px;
+						font-size: 26px;
+						font-weight: 600;
+						letter-spacing: 1px;
+					}
+		
+					
+					.layui-input, .layui-textarea, .layui-select {
+						background-color: rgba(255, 255, 255, 0.5); 
+						border: 1px solid #ddd;
+						color: #222; 
+						font-size: 14px;
+						transition: all 0.3s ease; 
+		
+					
+					.layui-input:focus, .layui-textarea:focus, .layui-select:focus {
+						background-color: rgba(255, 255, 255, 0.8);
+						border-color: #1E9FFF; 
+						box-shadow: 0 0 0 2px rgba(30, 159, 255, 0.2); 
+						outline: none; 
+					}
+		
+					
+					.layui-form-select dl {
+						background-color: rgba(255, 255, 255, 0.9); 
+						border: 1px solid #ddd;
+					}
+		
+					
+					.layui-form-radio {
+						color: #444;
+					}
+					.layui-form-radio>i:hover, .layui-form-radioed>i {
+						color: #1E9FFF;
+					}
+		
+					
+					.layui-btn-normal {
+						background-color: #1E9FFF;
+						border: none;
+						font-size: 15px;
+						padding: 0 30px;
+						transition: all 0.3s ease;
+					}
+					.layui-btn-normal:hover {
+						background-color: #0086d1; 
+						transform: translateY(-2px);
+						box-shadow: 0 4px 10px rgba(30, 159, 255, 0.3);
+					}
+		
+					
+					.layui-form-item {
+						margin-bottom: 22px;
+					}
+					
+				</style>
+	</head>
+	<body>
+		<h1 style="text-align: center;">师生互动系统注册</h1>
+		<form onsubmit="return zhuce()">
+		<div class="layui-form">
+			<div class="layui-form-item">
+				<label class="layui-form-label required">姓名</label>
+				<div class="layui-input-block">
+				<input id="username" type="text" name="username" class="layui-input" lay-verify="required"
+					lay-reqtext="姓名不能为空!" placeholder="请输入姓名">
+					</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label required">学号或编号</label>
+				<div class="layui-input-block">
+				<input id="number" type="text" name="number" class="layui-input" lay-verify="required"
+					lay-reqtext="学号或教师编号不能为空!" placeholder="请输入学号或教师编号">
+					</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label required">联系电话</label>
+				<div class="layui-input-block">
+				<input id="phone" type="text" name="phone" class="layui-input" lay-verify="required"
+					lay-reqtext="联系电话不能为空!" placeholder="请输入11位电话号码">
+					</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">家庭住址</label>
+				<div class="layui-input-block">
+				   <input id="address" type="text" name="address" class="layui-input" placeholder="请输入家庭住址">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label required">密码</label>
+				<div class="layui-input-block">
+				   <input id="userpsw" type="password" name="userpsw" class="layui-input" lay-verify="required"
+					lay-reqtext="密码不能为空!" placeholder="请输入密码,6-12位字母或数字">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label required">确认密码</label>
+				<div class="layui-input-block">
+				   <input id="password" type="password" name="password" class="layui-input" lay-verify="required"
+					lay-reqtext="确认密码不能为空!" placeholder="请再次输入密码">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label required">年级</label>
+				<div class="layui-input-block">
+					<select lay-verify="required">
+						<option value="1">大一</option>
+						<option value="2">大二</option>
+						<option value="3">大三</option>
+						<option value="4">大四</option>
+					</select>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label required">身份</label>
+				<div class="layui-input-block">
+					<input type="radio" name="identity" value="学生" title="学生" checked="">
+					<input type="radio" name="identity" value="教师" title="教师">
+				</div>
+			</div>
+			
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">
+						<a href="page/login-3.html">确认保存</a>
+					</button>
+				</div>
+			</div>
+		</div>
+		</form>
+		<script src="lib/layui-v2.6.3/layui.js"></script>
+		<script>
+			function zhuce(){
+				let username = document.getElementById("username");
+				let userreg = /^[\u4e00-\u9fa5]{2,4}$/
+				if(!userreg.test(username.value)){
+					
+				
+					alert("姓名格式错误，输入汉字");
+					return false;
+				}
+				let number = document.getElementById("number");
+				let numreg = /^[0-9]{10}$/
+				if(!numreg.test(number.value)){
+					
+				
+					alert("学号或教师编号错误，输入10位数字");
+					return false;
+				}
+				let phone = document.getElementById("phone");
+				let phoreg = /^[0-9]{11}$/
+				if(!phoreg.test(phone.value)){
+					
+				
+					alert("联系电话错误，输入11位数字");
+					return false;
+				}
+				let userpsw = document.getElementById("userpsw");
+				let pswreg = /^[A-Za-z0-9]{6,12}$/
+				if(!pswreg.test(userpsw.value)){
+					
+						
+					alert("密码格式错误，6-12位，包含字母和数字");
+					return false;
+				}
+				let password = document.getElementById("password");
+				if(userpsw.value !== password.value){
+					
+						
+					alert("与原密码不一致");
+					return false;
+				}
+			}
+			let targetUrl = "login-3.html"; 
+							window.location.href = targetUrl; 
+							return false;
+						}
+		</script>
+	</body>
+</html>
