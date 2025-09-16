@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>作业发布</title>
+		<link rel="stylesheet" href="lib/layui-v2.6.3/css/layui.css">
+		<link rel="stylesheet" href="../lib/layui-v2.6.3/css/layui.css" media="all">
+		<link rel="stylesheet" href="../lib/jq-module/zyupload/zyupload-1.0.0.min.css" media="all">
+		<link rel="stylesheet" href="../css/public.css" media="all">
+	</head>
+	<body>
+		<h1 style="text-align: center;">作业发布</h1>
+		<br />
+		<div class="layui-form">
+			<div class="layui-form-item">
+				<label class="layui-form-label required">课程名称</label>
+				<div class="layui-input-block">
+				<input id="username" type="text" name="username" class="layui-input" lay-verify="required"
+					lay-reqtext="课程名称不能为空!" placeholder="请输入课程名称">
+					</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label required">作业标题</label>
+				<div class="layui-input-block">
+				<input id="username" type="text" name="username" class="layui-input" lay-verify="required"
+					lay-reqtext="作业标题不能为空!" placeholder="请输入作业标题">
+					</div>
+			</div>
+			<div class="layui-form-item layui-form-text">
+			    <label class="layui-form-label">内容描述</label>
+			    <div class="layui-input-block">
+			        <textarea placeholder="请输入课程简介内容" class="layui-textarea"></textarea>
+			    </div>
+			</div>
+		
+			<div class="layui-form-item layui-form-text">
+			    <label class="layui-form-label">分值分布</label>
+			    <div class="layui-input-block">
+			        <textarea placeholder="请输入作业分值分布" class="layui-textarea"></textarea>
+			    </div>
+			</div>
+			<div class="layui-form-item layui-form-text">
+			    <label class="layui-form-label">文件上传</label>
+			    <div class="layui-input-block">
+			        <input type="file"/>
+			    </div>
+			</div>
+			<div class="layui-inline">
+			    <label class="layui-form-label">截至日期</label>
+			    <div class="layui-input-inline">
+			        <input type="text" name="date" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label">是否可补交</label>
+			    <div class="layui-input-block">
+			        <input type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="开|关">
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <div class="layui-input-block">
+			        <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+			        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			    </div>
+			</div>
+		</div>
+		<script src="lib/layui-v2.6.3/layui.js"></script>
+		<script>
+		        layui.use(['form', 'layedit', 'laydate'], function () {
+		            var form = layui.form
+		                , layer = layui.layer
+		                , layedit = layui.layedit
+		                , laydate = layui.laydate;
+		        
+		            //日期
+		            laydate.render({
+		                elem: '#date'
+		            });
+		            laydate.render({
+		                elem: '#date1'
+		            });
+		        
+		            //创建一个编辑器
+		            var editIndex = layedit.build('LAY_demo_editor');
+		        
+		
+		            // 表单提交监听
+		            form.on('submit(demo1)', function (data) {
+		                console.log(data.field); // 可以在这里获取表单数据并进行提交等操作
+		                return false; // 阻止表单跳转
+		            });
+		        });
+				
+		    </script>
+
+			
+	</body>
+</html>

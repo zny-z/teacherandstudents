@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>课程信息发布</title>
+		<link rel="stylesheet" href="lib/layui-v2.6.3/css/layui.css">
+	</head>
+	<body>
+		<h1 style="text-align: center;">课程信息发布</h1>
+		<br />
+		
+		<div class="layui-form">
+			<form onsubmit="publish()">
+			<div class="layui-form-item">
+				<label class="layui-form-label required">课程名称</label>
+				<div class="layui-input-block">
+				<input id="username" type="text" name="username" class="layui-input" lay-verify="required"
+					lay-reqtext="课程名称不能为空!" placeholder="请输入课程名称">
+					</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label required">课程编码</label>
+				<div class="layui-input-block">
+				<input id="number" type="text" name="number" class="layui-input" lay-verify="required"
+					lay-reqtext="课程编码不能为空!" placeholder="请输入课程编码">
+					</div>
+			</div>
+			<div class="layui-form-item">
+			    <label class="layui-form-label">学分</label>
+			    <div class="layui-input-block">
+			        <select name="interest" lay-filter="aihao">
+			            <option value=""></option>
+						
+			            <option value="0">1.0</option>
+			            <option value="1">1.5</option>
+			            <option value="2">2.0</option>
+			            <option value="3">2.5</option>
+			            <option value="4">3.0</option>
+						<option value="4">3.5</option>
+						<option value="4">4.0</option>
+						<option value="4">4.5</option>
+						<option value="4">5.0</option>
+			        </select>
+			    </div>
+			</div>
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label required">授课教师</label>
+				<div class="layui-input-block">
+				<input id="teacher" type="text" name="teacher" class="layui-input" lay-verify="required"
+					lay-reqtext="授课教师不能为空!" placeholder="授课教师用户名">
+					</div>
+			</div>
+			
+			<div class="layui-form-item">
+			    <label class="layui-form-label">上课地点</label>
+			    <div class="layui-input-inline">
+			        <select name="quiz1">
+			            <option value="">请选择地点</option>
+			            <option >1号教学楼</option>
+			            <option >2号教学楼</option>
+			            <option >3号教学楼</option>
+						<option >4号教学楼</option>
+						<option >5号教学楼</option>
+						<option >6号教学楼</option>
+						<option >7号教学楼</option>
+			        </select>
+			    </div>
+			    <div class="layui-input-inline">
+			        <select name="quiz2">
+			            <option value="">请选择教室</option>
+			            <option value="101">101</option>
+			            <option value="102">102</option>
+			            <option value="103">103</option>
+			            <option value="201">201</option>
+			            <option value="202">202</option>
+						<option value="203">203</option>
+						<option value="301">301</option>
+						<option value="302">302</option>
+						<option value="303">303</option>
+						<option value="401">401</option>
+						<option value="402">402</option>
+						<option value="403">403</option>
+			        </select>
+			    </div>
+			    
+			</div>
+			<div class="layui-form-item">
+			    <div class="layui-inline">
+			        <label class="layui-form-label">时间</label>
+			        <div class="layui-input-inline" style="width: 100px;">
+			            <select>
+							<option>周次</option>
+							<option>第一周</option>
+							<option>第二周</option>
+							<option>第三周</option>
+							<option>第四周</option>
+							<option>第五周</option>
+							<option>第六周</option>
+							<option>第七周</option>
+							<option>第八周</option>
+							<option>第九周</option>
+							<option>第十周</option>
+							<option>第十一周</option>
+							<option>第十二周</option>
+							<option>第十三周</option>
+							<option>第十四周</option>
+						</select>
+			        </div>
+			        <div class="layui-form-mid">--</div>
+			        <div class="layui-input-inline" style="width: 100px;">
+			            <select>
+							<option>周次</option>
+			            	<option>第一周</option>
+			            	<option>第二周</option>
+			            	<option>第三周</option>
+			            	<option>第四周</option>
+			            	<option>第五周</option>
+			            	<option>第六周</option>
+			            	<option>第七周</option>
+			            	<option>第八周</option>
+			            	<option>第九周</option>
+			            	<option>第十周</option>
+			            	<option>第十一周</option>
+			            	<option>第十二周</option>
+			            	<option>第十三周</option>
+			            	<option>第十四周</option>
+			            </select>
+			        </div>
+					<div class="layui-input-inline" style="width: 100px;">
+					    <select>
+							<option>节次</option>
+							<option>第一节</option>
+							<option>第二节</option>
+							<option>第三节</option>
+							<option>第四节</option>
+							<option>第五节</option>
+							<option>第六节</option>
+							<option>第七节</option>
+							<option>第八节</option>
+							<option>第九节</option>
+							<option>第十节</option>
+							<option>第十一节</option>
+							
+						</select>
+					</div>
+					<div class="layui-form-mid">--</div>
+					<div class="layui-input-inline" style="width: 100px;">
+					    <select>
+							<option>节次</option>
+					    	<option>第一节</option>
+					    	<option>第二节</option>
+					    	<option>第三节</option>
+					    	<option>第四节</option>
+					    	<option>第五节</option>
+					    	<option>第六节</option>
+					    	<option>第七节</option>
+					    	<option>第八节</option>
+					    	<option>第九节</option>
+					    	<option>第十节</option>
+					    	<option>第十一节</option>
+					    	
+					    </select>
+					</div>
+			    </div>
+			</div>
+			<div class="layui-form-item layui-form-text">
+			    <label class="layui-form-label">课程简介</label>
+			    <div class="layui-input-block">
+			        <textarea placeholder="请输入课程简介内容" class="layui-textarea"></textarea>
+			    </div>
+			</div>
+			<div class="layui-form-item">
+			    <div class="layui-input-block">
+			        <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+			        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			    </div>
+			</div>
+			</form>
+		</div>
+		
+		
+		<script src="lib/layui-v2.6.3/layui.js"></script>
+		<script>
+			function publish(){
+				let username = document.getElementById("username");
+				let userreg = /^[\u4e00-\u9fa5]$/
+				if(!userreg.test(username.value)){
+					alert("课程名称格式错误，输入汉字");
+					return false;
+				}
+				
+					let number = document.getElementById("number");
+					let numreg = /^[A-Za-z0-9]{4,10}$/
+					if(!numreg.test(number.value)){
+						alert("课程编码错误，4-10位，包括字母和数字");
+						return false;
+					}
+					let teacher = document.getElementById("teacher");
+					let teareg = /^[\u4e00-\u9fa5]$/
+					if(!teareg.test(teacher.value)){
+						alert("课程名称格式错误，输入汉字");
+						return false;
+					}
+			}
+		</script>
+	
+	</body>
+</html>
